@@ -1113,7 +1113,7 @@ AieRC XAie_PerfUtilization(XAie_DevInst *DevInst, XAie_PerfInst *PerfInst)
  * @note		None.
  *
  ******************************************************************************/
-AieRC XAie_ConfigMemTilesMemInterleaving(XAie_DevInst *DevInst,
+AieRC XAie_ConfigMemInterleaving(XAie_DevInst *DevInst,
 		XAie_LocType *Locs, u32 NumTiles, u8 Enable)
 {
 	AieRC RC;
