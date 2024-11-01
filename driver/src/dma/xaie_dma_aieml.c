@@ -1257,10 +1257,10 @@ AieRC _XAieMl_DmaWaitForBdTaskQueue(XAie_DevInst *DevInst, XAie_LocType Loc,
 	/* Poll for the MSB bit of Task_queue_size bits to ensure
 	 * queue is not full*/
 	if (BusyPoll != XAIE_ENABLE){
-		Status = XAie_MaskPoll(DevInst, Addr, XAIEML_DMA_STATUS_TASK_Q_SIZE_MSB,
+		Status = XAie_MaskPoll(DevInst, Addr, (1 << XAIEML_DMA_STATUS_TASK_Q_SIZE_MSB),
 		 0, TimeOutUs);
 	} else {
-		Status = XAie_MaskPollBusy(DevInst, Addr, XAIEML_DMA_STATUS_TASK_Q_SIZE_MSB,
+		Status = XAie_MaskPollBusy(DevInst, Addr, (1 << XAIEML_DMA_STATUS_TASK_Q_SIZE_MSB),
 		 0, TimeOutUs);
 	}
 
