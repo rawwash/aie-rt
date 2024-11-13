@@ -1428,6 +1428,7 @@ u8* _XAie_TxnExportSerialized(XAie_DevInst *DevInst, u8 NumConsumers,
 				(AllocatedBuffSize) * 2U, BuffSize);
 				if(TxnPtr == NULL) {
 					printf("Realloc Failed\n");
+					free(blockwrite_buffer);
 					return NULL;
 				}
 				AllocatedBuffSize *= 2U;
@@ -1550,6 +1551,7 @@ u8* _XAie_TxnExportSerialized(XAie_DevInst *DevInst, u8 NumConsumers,
 									(BW_Buff_AllocatedSize) * 2U, BW_Buff_Size) );
 				if(blockwrite_buffer == NULL) {
 							printf("Realloc Failed\n");
+							free(TxnPtr);
 							return NULL;
 						}
 				BW_Buff_AllocatedSize *= 2U;
@@ -2632,6 +2634,7 @@ AieRC XAie_AddCustomTxnOp(XAie_DevInst *DevInst, u8 OpNumber, void* Args, size_t
 		if(TxnInst->NumCmds + 1U == TxnInst->MaxCmds) {
 			RC = _XAie_ReallocCmdBuf(TxnInst);
 			if (RC != XAIE_OK) {
+				 free(tmpBuff);
 				 return RC;
 			}
 
