@@ -1023,7 +1023,7 @@ static inline void _XAie_CreateTxnHeader(XAie_DevInst *DevInst,
 
 static inline u8 _XAie_GetRowfromRegOff(XAie_DevInst *DevInst, u64 RegOff)
 {
-	return RegOff &(u64)(~(ULONG_MAX << DevInst->DevProp.RowShift));
+	return RegOff &(u64)(~((u64) ULONG_MAX << DevInst->DevProp.RowShift));
 }
 
 static inline u8 _XAie_GetColfromRegOff(XAie_DevInst *DevInst, u64 RegOff)
