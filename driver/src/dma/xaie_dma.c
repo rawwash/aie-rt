@@ -961,7 +961,7 @@ AieRC XAie_DmaChannelReset(XAie_DevInst *DevInst, XAie_LocType Loc, u8 ChNum,
 
 	Addr = XAie_GetTileAddr(DevInst, Loc.Row, Loc.Col) +
 		DmaMod->ChCtrlBase + ChNum * DmaMod->ChIdxOffset +
-		(u8)Dir * DmaMod->ChIdxOffset * DmaMod->NumChannels;
+		((u64)(u8)Dir) * ((u64)DmaMod->ChIdxOffset * (u64)DmaMod->NumChannels);
 
 	Val = XAie_SetField(Reset, DmaMod->ChProp->Reset.Lsb,
 			DmaMod->ChProp->Reset.Mask);
@@ -1085,7 +1085,7 @@ AieRC XAie_DmaChannelPauseStream(XAie_DevInst *DevInst, XAie_LocType Loc,
 
 	Addr = XAie_GetTileAddr(DevInst, Loc.Row, Loc.Col) +
 		DmaMod->ChCtrlBase + ChNum * DmaMod->ChIdxOffset +
-		(u8)Dir * DmaMod->ChIdxOffset * DmaMod->NumChannels;
+		((u64)(u8)Dir) * ((u64)DmaMod->ChIdxOffset * (u64)DmaMod->NumChannels);
 
 	return XAie_MaskWrite32(DevInst, Addr, DmaMod->ChProp->PauseStream.Mask,
 			Value);
@@ -1147,7 +1147,7 @@ AieRC XAie_DmaChannelPauseMem(XAie_DevInst *DevInst, XAie_LocType Loc, u8 ChNum,
 			DmaMod->ChProp->PauseMem.Mask);
 	Addr = XAie_GetTileAddr(DevInst, Loc.Row, Loc.Col) +
 		DmaMod->ChCtrlBase + ChNum * DmaMod->ChIdxOffset +
-		(u8)Dir * DmaMod->ChIdxOffset * DmaMod->NumChannels;
+		((u64)(u8)Dir) * ((u64)DmaMod->ChIdxOffset * (u64)DmaMod->NumChannels);
 
 	return XAie_MaskWrite32(DevInst, Addr, DmaMod->ChProp->PauseMem.Mask,
 			Value);
@@ -1214,7 +1214,7 @@ AieRC XAie_DmaChannelPushBdToQueue(XAie_DevInst *DevInst, XAie_LocType Loc,
 
 	Addr = XAie_GetTileAddr(DevInst, Loc.Row, Loc.Col) +
 		DmaMod->ChCtrlBase + ChNum * DmaMod->ChIdxOffset +
-		(u8)Dir * DmaMod->ChIdxOffset * DmaMod->NumChannels;
+		((u64)(u8)Dir) * ((u64)DmaMod->ChIdxOffset * (u64)DmaMod->NumChannels);
 
 	return XAie_Write32(DevInst, Addr + (u64)(DmaMod->ChProp->StartBd.Idx * 4U),
 			BdNum);
@@ -1268,7 +1268,7 @@ static AieRC _XAie_DmaChannelControl(XAie_DevInst *DevInst, XAie_LocType Loc,
 
 	Addr = XAie_GetTileAddr(DevInst, Loc.Row, Loc.Col) +
 		DmaMod->ChCtrlBase + ChNum * DmaMod->ChIdxOffset +
-		(u8)Dir * DmaMod->ChIdxOffset * DmaMod->NumChannels;
+		((u64)(u8)Dir) * ((u64)DmaMod->ChIdxOffset * (u64)DmaMod->NumChannels);
 
 	return XAie_MaskWrite32(DevInst,
 			Addr + (u64)(DmaMod->ChProp->Enable.Idx * 4U),
@@ -1798,7 +1798,7 @@ AieRC XAie_DmaChannelSetStartQueueGeneric(XAie_DevInst *DevInst,
 
 	Addr = XAie_GetTileAddr(DevInst, Loc.Row, Loc.Col) +
 		DmaMod->StartQueueBase + ChNum * DmaMod->ChIdxOffset +
-		(u8)Dir * DmaMod->ChIdxOffset * DmaMod->NumChannels;
+		((u64)(u8)Dir) * ((u64)DmaMod->ChIdxOffset * (u64)DmaMod->NumChannels);
 
 	Val = XAie_SetField(StartBd, DmaMod->ChProp->StartBd.Lsb,
 			DmaMod->ChProp->StartBd.Mask) |
@@ -2079,7 +2079,7 @@ AieRC XAie_DmaWriteChannel(XAie_DevInst *DevInst,
 
 	Addr = XAie_GetTileAddr(DevInst, Loc.Row, Loc.Col) +
 		DmaMod->ChCtrlBase + ChNum * DmaMod->ChIdxOffset +
-		(u8)Dir * DmaMod->ChIdxOffset * DmaMod->NumChannels;
+		((u64)(u8)Dir) * ((u64)DmaMod->ChIdxOffset * (u64)DmaMod->NumChannels);
 
 	Val = XAie_SetField(DmaChannelDesc->EnOutofOrderId, (DmaMod->ChProp->EnOutofOrder.Lsb),
 			(DmaMod->ChProp->EnOutofOrder.Mask)) |
